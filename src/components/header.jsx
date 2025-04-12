@@ -6,7 +6,6 @@ export default function Header({ activeSection }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect for header
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);

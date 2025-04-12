@@ -93,7 +93,7 @@ export default function About() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#contact"
-                  className="inline-flex items-center bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-md font-medium transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-md font-medium transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     document.getElementById("contact")?.scrollIntoView({
@@ -104,7 +104,7 @@ export default function About() {
                   Get In Touch
                 </a>
                 <a
-                  href="/curriculum.pdf"
+                  href={`${import.meta.env.BASE_URL}curriculum.pdf`}
                   download="Curriculum_Natanael_Isaac.pdf"
                   className="inline-flex items-center justify-center border border-primary text-primary hover:bg-primary/10 px-6 py-3 rounded-md font-medium transition-colors"
                 >
