@@ -1,4 +1,4 @@
-👨‍💻 Natanael Isaac – IT Developer
+#👨‍💻 Natanael Isaac – IT Developer
 Experienced in desktop application development with C# and SQL Server database management. Passionate about building efficient, data-driven solutions aligned with business needs.
 
 🛠️ Skills
