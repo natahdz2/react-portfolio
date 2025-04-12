@@ -1,12 +1,23 @@
-# React + Vite
+👨‍💻 Natanael Isaac – IT Developer
+Experienced in desktop application development with C# and SQL Server database management. Passionate about building efficient, data-driven solutions aligned with business needs.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🛠️ Skills
+C# · SQL Server · HTML · CSS · JavaScript
 
-Currently, two official plugins are available:
+Microsoft Office · Data Curation · Video Editing
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌱 Currently
+Studying English (A2–B1)
 
-## Expanding the ESLint configuration
+Final-year student at Instituto Politécnico El Ave María
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+💼 Work Experience
+Omega Tech (S.A) – Refurbish Department
+Tasks in inspection, diagnostics, repair, and quality control.
+
+🤝 Let's Connect
+📧 natanaelhdzrosario@gmail.com
+
+📍 Santo Domingo Norte, RD
+
+📱 +1 (829) 852-2008
