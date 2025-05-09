@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { useInView } from "../../hooks/use-in-view";
@@ -6,6 +8,7 @@ export default function About() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, threshold: 0.2 });
   const [imageLoaded, setImageLoaded] = useState(false);
+  const base = import.meta.env.BASE_URL;
 
   return (
     <section id="about" ref={sectionRef} className="py-20 md:py-32 bg-muted/30">
@@ -32,7 +35,7 @@ export default function About() {
                   )}
                 />
                 <img
-                  src="/placeholder.svg?height=600&width=600"
+                  src={`${base}me.jpg`}
                   alt="Your Name"
                   className={cn(
                     "w-full h-full object-cover transition-opacity duration-500",
