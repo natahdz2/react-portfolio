@@ -17,8 +17,8 @@ export default function Contact() {
     {
       icon: <Phone className="h-5 w-5" />,
       label: "Phone",
-      value: "+1 (829) 852-2008",
-      href: "tel:+18298522008",
+      value: "+1 (809) 543-9504",
+      href: "tel:+18095439504",
     },
     {
       icon: <MapPin className="h-5 w-5" />,

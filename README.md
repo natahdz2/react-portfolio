@@ -20,4 +20,4 @@ Tasks in inspection, diagnostics, repair, and quality control.
 
 📍 Santo Domingo Norte, RD
 
-📱 +1 (829) 852-2008
+📱 +1 (809) 543-9504
