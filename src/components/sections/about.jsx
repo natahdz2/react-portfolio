@@ -1,119 +1,177 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { cn } from "../../lib/utils";
 import { useInView } from "../../hooks/use-in-view";
+
+// Content preserved exactly
+const TECH_LIST = [
+  "JavaScript (ES6+)",
+  "React",
+  "TypeScript",
+  "C#",
+  "Node.js",
+  "HTML & CSS",
+  "Tailwind CSS",
+  "Cloud",
+  "Azure",
+  "IA Automation",
+  "Docker",
+  "Kubernetes",
+  "Flutter",
+];
 
 export default function About() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, threshold: 0.2 });
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const base = import.meta.env.BASE_URL;
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            About <span className="text-primary">Me</span>
-          </h2>
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{
+        padding: "clamp(5rem,12vw,9rem) clamp(1.5rem,5vw,4rem)",
+        background: "rgba(255,255,255,.012)",
+        borderTop: "1px solid rgba(255,255,255,.05)",
+        borderBottom: "1px solid rgba(255,255,255,.05)",
+      }}
+    >
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#4F75FF]/6 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-screen-2xl mx-auto">
+
+        {/* ── Section label ── */}
+        <p className="label-meta text-white/25 mb-8">
+          <span className="mr-4">01 /</span>About Me
+        </p>
+
+        {/* ── 12-col grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
+
+          {/* ── LEFT: Photo (4/12) ── */}
+          <div
+            className="md:col-span-4 reveal"
+            style={{
+              transitionDelay: "100ms",
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? "translateY(0)" : "translateY(24px)",
+              transition: "opacity .9s var(--ease-out) 100ms, transform .9s var(--ease-out) 100ms",
+            }}
+          >
             <div
-              className={cn(
-                "transition-all duration-1000 delay-300 transform",
-                isInView
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-10"
-              )}
+              className="relative overflow-hidden"
+              style={{
+                aspectRatio: "4/5",
+                borderRadius: "var(--radius-sm)",
+                border: "1px solid rgba(255,255,255,.08)",
+              }}
             >
-              <div className="relative rounded-lg overflow-hidden aspect-square bg-muted">
-                <div
-                  className={cn(
-                    "absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent transition-opacity duration-500",
-                    imageLoaded ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                <img
-                  src={`${base}me.jpg`}
-                  alt="Your Name"
-                  className={cn(
-                    "w-full h-full object-cover transition-opacity duration-500",
-                    imageLoaded ? "opacity-100" : "opacity-0"
-                  )}
-                  onLoad={() => setImageLoaded(true)}
-                />
-
-                {!imageLoaded && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                    <span className="text-muted-foreground">Loading...</span>
-                  </div>
-                )}
-              </div>
+              <img
+                src={`${base}me.jpg`}
+                alt="Natanael Isaac"
+                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                style={{
+                  filter: "grayscale(20%) brightness(0.9)",
+                  opacity: imgLoaded ? 1 : 0,
+                  transition: "opacity .5s",
+                }}
+                onLoad={() => setImgLoaded(true)}
+              />
+              {!imgLoaded && (
+                <div className="absolute inset-0 shimmer flex items-center justify-center">
+                  <span className="label-meta text-white/25">Loading…</span>
+                </div>
+              )}
+              {/* Subtle blue overlay on hover */}
+              <div className="absolute inset-0 bg-[#4F75FF]/10 opacity-0 hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
             </div>
 
-            <div
-              className={cn(
-                "transition-all duration-1000 delay-500 transform",
-                isInView
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-10"
-              )}
+            {/* Editorial caption below photo */}
+            <div className="mt-4 flex items-center gap-4">
+              <div className="h-px flex-1 bg-white/08" />
+              <span className="label-meta text-white/25">Santo Domingo, DR</span>
+            </div>
+          </div>
+
+          {/* ── RIGHT: Text (8/12) ── */}
+          <div
+            className="md:col-span-8 space-y-8"
+            style={{
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? "translateY(0)" : "translateY(24px)",
+              transition: "opacity .9s var(--ease-out) 250ms, transform .9s var(--ease-out) 250ms",
+            }}
+          >
+            <h2
+              className="tracking-tight leading-[.9] text-white"
+              style={{ fontFamily: "var(--serif)", fontWeight: 700 }}
             >
-              <h3 className="text-2xl font-bold mb-4">
-                Software Developer & UI/UX Enthusiast
-              </h3>
-              <p className="text-muted-foreground mb-6">
+              Software Developer{" "}
+              <span style={{ color: "var(--accent)", fontStyle: "italic", fontWeight: 400 }}>
+                &amp; UI/UX Enthusiast
+              </span>
+            </h2>
+
+            <div className="space-y-5 text-white/55 leading-relaxed text-lg">
+              <p>
                 Hello! I'm Natanael Isaac, a passionate web developer based in
                 Dominican Republic. I enjoy creating things that live on the
                 internet, whether that be websites, applications, or anything in
                 between.
               </p>
-              <p className="text-muted-foreground mb-6">
+              <p>
                 My goal is to always build products that provide pixel-perfect,
-                performant experiences. I'm quietly confident, naturally
-                curious, and perpetually working on improving my skills.
+                performant experiences. I'm quietly confident, naturally curious,
+                and perpetually working on improving my skills.
               </p>
-              <p className="text-muted-foreground mb-8">
-                Here are a few technologies I've been working with recently:
+            </div>
+
+            {/* Divider */}
+            <div className="divider" />
+
+            {/* ── Tech list — Curator numbered style ── */}
+            <div>
+              <p className="label-meta text-white/25 mb-6">
+                Technologies I've been working with recently:
               </p>
-              <ul className="grid grid-cols-2 gap-2 mb-8">
-                {[
-                  "JavaScript (ES6+)",
-                  "React",
-                  "TypeScript",
-                  "C#",
-                  "Node.js",
-                  "HTML & CSS",
-                  "Tailwind CSS",
-                ].map((skill) => (
-                  <li key={skill} className="flex items-center">
-                    <span className="text-primary mr-2">›</span>
-                    {skill}
+              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
+                {TECH_LIST.map((skill, i) => (
+                  <li key={skill} className="flex items-start gap-3">
+                    <span className="label-meta text-[#4F75FF] flex-shrink-0 mt-0.5">
+                      {String(i + 1).padStart(2, "0")} /
+                    </span>
+                    <span className="text-sm text-white/65 font-medium">{skill}</span>
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="#contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-md font-medium transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("contact")?.scrollIntoView({
-                      behavior: "smooth",
-                    });
-                  }}
-                >
-                  Get In Touch
-                </a>
-                <a
-                  href={`${import.meta.env.BASE_URL}curriculum.pdf`}
-                  download="Curriculum_Natanael_Isaac.pdf"
-                  className="inline-flex items-center justify-center border border-primary text-primary hover:bg-primary/10 px-6 py-3 rounded-md font-medium transition-colors"
-                >
-                  Download CV
-                </a>
-              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="divider" />
+
+            {/* ── CTAs ── */}
+            <div className="flex flex-col sm:flex-row gap-5 pt-2">
+              <a
+                href="#contact"
+                id="about-cta-contact"
+                className="btn-magnetic btn-primary inline-flex items-center justify-center gap-2 text-[11px] font-medium tracking-[0.22em] uppercase text-white px-8 py-4"
+                style={{ borderRadius: "var(--radius-sm)", minHeight: "48px" }}
+                onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+              >
+                Get In Touch
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}curriculum.pdf`}
+                download="Curriculum_Natanael_Isaac.pdf"
+                id="about-cta-cv"
+                className="btn-magnetic btn-ghost inline-flex items-center justify-center gap-2 text-[11px] font-medium tracking-[0.22em] uppercase px-8 py-4"
+                style={{ borderRadius: "var(--radius-sm)", minHeight: "48px" }}
+              >
+                Download CV ↓
+              </a>
             </div>
           </div>
         </div>

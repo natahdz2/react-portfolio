@@ -1,15 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ArrowDown } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { useEffect, useState, useRef } from "react";
 
-export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [text, setText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const codeSnippet = `function createWebsite() {
+const CODE_SNIPPET = `function createWebsite() {
   const skills = [
     "React", 
     "Next.js",
@@ -24,145 +17,264 @@ export default function Hero() {
   };
 }`;
 
+const TECH_PILLS = ["React", "Next.js", "TypeScript", "Tailwind"];
+
+/**
+ * Magnetic button helper — attaches to a ref.
+ * Applies a subtle translate based on cursor position within the element.
+ */
+function useMagnetic(strength = 0.35) {
+  const ref = useRef(null);
+
   useEffect(() => {
-    setIsVisible(true);
+    const el = ref.current;
+    if (!el) return;
 
-    // Typing animation
-    if (currentIndex < codeSnippet.length) {
-      const timeout = setTimeout(() => {
-        setText((prev) => prev + codeSnippet[currentIndex]);
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 30);
+    const onMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const zone = Math.max(rect.width, rect.height) * 2;
+      if (dist < zone) {
+        el.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
+      }
+    };
+    const onLeave = () => {
+      el.style.transform = "";
+      el.style.transition = "transform .4s cubic-bezier(0.34,1.56,0.64,1)";
+    };
 
-      return () => clearTimeout(timeout);
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("mouseleave", onLeave);
+    return () => {
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseleave", onLeave);
+    };
+  }, [strength]);
+
+  return ref;
+}
+
+export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [charIndex, setCharIndex] = useState(0);
+  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
+  const viewBtn = useMagnetic(0.28);
+  const contactBtn = useMagnetic(0.28);
+
+  // Fade-in on mount
+  useEffect(() => { setTimeout(() => setIsVisible(true), 120); }, []);
+
+  // Terminal typing effect
+  useEffect(() => {
+    if (charIndex < CODE_SNIPPET.length) {
+      const id = setTimeout(() => {
+        setTypedText((p) => p + CODE_SNIPPET[charIndex]);
+        setCharIndex((i) => i + 1);
+      }, 26);
+      return () => clearTimeout(id);
     }
-  }, [currentIndex, codeSnippet]);
+  }, [charIndex]);
 
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      window.scrollTo({
-        top: aboutSection.offsetTop - 80,
-        behavior: "smooth",
-      });
-    }
-  };
+  // 3D card mouse-tracking
+  useEffect(() => {
+    const section = sectionRef.current;
+    const card = cardRef.current;
+    if (!section || !card) return;
+
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+    if (isMobile) return;
+
+    const onMove = (e) => {
+      const rect = section.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const rx = ((e.clientY - cy) / rect.height) * -14; // rotateX
+      const ry = ((e.clientX - cx) / rect.width) * 12; // rotateY
+      card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
+    };
+    const onLeave = () => {
+      card.style.transition = "transform .6s cubic-bezier(0.16,1,0.3,1)";
+      card.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
+      setTimeout(() => { if (card) card.style.transition = ""; }, 600);
+    };
+
+    section.addEventListener("mousemove", onMove);
+    section.addEventListener("mouseleave", onLeave);
+    return () => {
+      section.removeEventListener("mousemove", onMove);
+      section.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
+  const scrollTo = (id) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
+      ref={sectionRef}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-24"
     >
-      <div className="container mx-auto px-4 sm:px-6 z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div
-            className={cn(
-              "max-w-3xl transition-all duration-1000 transform",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            )}
-          >
-            <p className="text-primary font-medium mb-4">Hello, my name is</p>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4">
-              <span className="block">Natanael Isaac</span>
-              <span className="text-primary/80">Web Developer</span>
+      {/* Ambient glow orbs */}
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#4F75FF]/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 left-1/4  w-64 h-64 bg-[#818cf8]/6 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-screen-2xl mx-auto px-8 w-full">
+
+        {/* ── Curator label ── */}
+        <div
+          className="label-meta mb-12 transition-all duration-1000"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(-8px)",
+          }}
+        >
+          <span className="text-white/25 mr-4">01 /</span>
+          Hello, my name is
+        </div>
+
+        {/* ── 12-col editorial grid ── */}
+        {/* FIX: Cambiado de items-end a items-center para arreglar el espacio "despegado" */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-12 gap-y-16 lg:gap-8 items-center"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(24px)",
+            transition: "opacity 1s var(--ease-out) .1s, transform 1s var(--ease-out) .1s",
+          }}
+        >
+          {/* ── LEFT: Headline ── */}
+          {/* FIX: Ajustado los col-span para dar más espacio en pantallas medianas/grandes */}
+          <div className="col-span-1 lg:col-span-7 xl:col-span-8">
+            <h1
+              className="tracking-tight leading-[0.88] text-white"
+              style={{ fontFamily: "var(--serif)", fontSize: "clamp(3.5rem, 8vw, 9rem)", fontWeight: 700 }}
+            >
+              Building<br />
+              Digital<br />
+              <span style={{ color: "var(--accent)", fontStyle: "italic", fontWeight: 400 }}>
+                Experiences.
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-xl">
-              I build exceptional and accessible digital experiences for the
-              web.
+
+            {/* Sub-title */}
+            <h2
+              className="mt-8 text-2xl md:text-3xl font-semibold text-white/70 flex flex-wrap items-center gap-4"
+              style={{ letterSpacing: "-.01em" }}
+            >
+              Natanael Isaac
+              <span className="text-base font-normal text-white/30">— Web Developer</span>
+            </h2>
+
+            <p className="mt-5 text-white/45 text-lg leading-relaxed max-w-lg">
+              I build exceptional and accessible digital experiences for the web.
             </p>
-            <div className="flex flex-wrap gap-4">
+
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-5 mt-10">
               <a
+                ref={viewBtn}
                 href="#projects"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-md font-medium transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("projects")?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "nearest",
-                  });
-                }}
+                id="hero-cta-work"
+                className="btn-magnetic btn-primary inline-flex items-center gap-3 px-8 py-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white"
+                style={{ borderRadius: "var(--radius-sm)" }}
+                onClick={(e) => { e.preventDefault(); scrollTo("projects"); }}
               >
                 View My Work
+                <span style={{ fontSize: "1rem" }}>↗</span>
               </a>
               <a
+                ref={contactBtn}
                 href="#contact"
-                className="border border-primary text-primary hover:bg-primary/10 px-6 py-3 rounded-md font-medium transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("contact")?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "nearest",
-                  });
-                }}
+                id="hero-cta-contact"
+                className="btn-magnetic btn-ghost inline-flex items-center gap-3 px-8 py-4 text-[11px] font-medium tracking-[0.22em] uppercase text-white/70"
+                style={{ borderRadius: "var(--radius-sm)" }}
+                onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
               >
                 Contact Me
               </a>
             </div>
           </div>
 
-          {/* Code Terminal Animation */}
-          <div
-            className={cn(
-              "hidden md:block transition-all duration-1000 transform",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            )}
-          >
-            <div className="bg-zinc-900 rounded-lg shadow-xl overflow-hidden border border-zinc-700 max-w-md mx-auto">
-              <div className="flex items-center px-4 py-2 bg-zinc-800 border-b border-zinc-700">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          {/* ── RIGHT: 3D Terminal ── */}
+          {/* FIX: Oculto en móviles y tablets pequeñas, visible y bien posicionado a partir de 'lg' */}
+          <div className="col-span-1 lg:col-span-5 xl:col-span-4 hidden lg:block relative">
+            <div className="hero-3d-wrap">
+              <div ref={cardRef} className="hero-3d-card w-full">
+                {/* Terminal window */}
+                <div className="glass-card overflow-hidden shadow-2xl bg-black/40 backdrop-blur-md"
+                  style={{ borderRadius: "var(--radius-md)", border: "1px solid rgba(255,255,255,0.08)" }}
+                >
+                  {/* Title bar */}
+                  <div className="terminal-bar bg-white/5 px-4 py-3 flex items-center border-b border-white/10">
+                    <span className="w-3 h-3 rounded-full bg-red-500 mr-2" />
+                    <span className="w-3 h-3 rounded-full bg-yellow-500 mr-2" />
+                    <span className="w-3 h-3 rounded-full bg-green-500 mr-2" />
+                    <span className="ml-4 text-[10px] tracking-widest uppercase text-white/30 font-medium">developer.js</span>
+                  </div>
+                  {/* Code body */}
+                  <div className="p-6 font-mono text-sm sm:text-base leading-relaxed text-green-400/90 min-h-[260px]"
+                    style={{ fontFamily: "var(--mono)" }}
+                  >
+                    <pre className="whitespace-pre-wrap break-words">
+                      <code>{typedText}</code>
+                      <span className="inline-block w-2 h-4 bg-green-400/80 ml-1 animate-pulse" />
+                    </pre>
+                  </div>
                 </div>
-                <div className="mx-auto text-sm text-zinc-400 font-mono">
-                  developer.js
-                </div>
-              </div>
-              <div className="p-4 font-mono text-sm text-green-400 h-[300px] overflow-hidden">
-                <pre className="whitespace-pre-wrap">
-                  <code>{text}</code>
-                  <span className="inline-block w-2 h-5 bg-green-400 animate-pulse ml-0.5"></span>
-                </pre>
-              </div>
-            </div>
 
-            {/* Floating tech badges */}
-            <div className="relative mt-8 max-w-md mx-auto h-16">
-              <div className="absolute -top-4 -left-2 bg-primary/10 px-3 py-1 rounded-full text-primary text-sm font-medium animate-bounce-slow">
-                React
-              </div>
-              <div className="absolute top-2 right-0 bg-primary/10 px-3 py-1 rounded-full text-primary text-sm font-medium animate-pulse">
-                Next.js
-              </div>
-              <div className="absolute top-12 left-1/4 bg-primary/10 px-3 py-1 rounded-full text-primary text-sm font-medium animate-float">
-                TypeScript
-              </div>
-              <div className="absolute top-8 right-1/4 bg-primary/10 px-3 py-1 rounded-full text-primary text-sm font-medium animate-bounce-slow">
-                Tailwind
+                {/* Floating tech pills */}
+                <div className="absolute -bottom-6 -right-4 flex flex-col gap-3 z-20">
+                  {TECH_PILLS.map((pill, i) => (
+                    <div
+                      key={pill}
+                      className={`glass-card px-4 py-2 text-[10px] font-bold tracking-widest uppercase text-white bg-white/10 backdrop-blur-md border border-white/10 shadow-lg float-${i + 1}`}
+                      style={{ borderRadius: "var(--radius-sm)" }}
+                    >
+                      {pill}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute bottom-10 left-0 right-0 mx-auto w-10 flex justify-center animate-bounce">
-        <button
-          onClick={scrollToAbout}
-          aria-label="Scroll down"
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border hover:border-primary transition-colors"
+        {/* ── Wide editorial image strip ── */}
+        {/* FIX: Eliminado aspectRatio para evitar que se estire feo en pantallas estrechas */}
+        <div
+          className="mt-24 lg:mt-32 w-full overflow-hidden relative h-24 md:h-32"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 1.2s var(--ease-out) .5s",
+          }}
         >
-          <ArrowDown className="h-5 w-5 text-primary" />
-        </button>
+          <div className="absolute inset-0 shimmer" style={{ borderRadius: "var(--radius-sm)" }} />
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-white/5 backdrop-blur-sm px-4 text-center"
+            style={{ borderRadius: "var(--radius-sm)", border: "1px solid rgba(255,255,255,.06)" }}
+          >
+            <p className="text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase text-white/40">
+              Full-Stack Developer <span className="mx-2 hidden sm:inline-block">·</span><br className="sm:hidden" /> Santo Domingo, Dominican Republic <span className="mx-2 hidden sm:inline-block">·</span><br className="sm:hidden" /> Available for Work
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl" />
+      {/* ── Scroll indicator ── */}
+      <div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        style={{ opacity: isVisible ? 0.4 : 0, transition: "opacity .8s .8s" }}
+      >
+        <span className="text-[10px] tracking-widest uppercase font-medium text-white/40">Scroll</span>
+        <div className="w-px h-8 bg-white/20 animate-pulse" />
+      </div>
     </section>
   );
 }

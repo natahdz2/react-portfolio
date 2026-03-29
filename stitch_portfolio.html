@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Natanael Isaac | Web Developer Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#0e0e0e",
+                        "surface-container-high": "#1f1f1f",
+                        "secondary": "#8a95ff",
+                        "on-secondary-fixed": "#192490",
+                        "tertiary": "#ffa5d9",
+                        "tertiary-container": "#ff8ed2",
+                        "primary-fixed-dim": "#8387ff",
+                        "surface-tint": "#a3a6ff",
+                        "secondary-container": "#2f3aa3",
+                        "on-tertiary-container": "#63054a",
+                        "secondary-dim": "#8a95ff",
+                        "surface-bright": "#2c2c2c",
+                        "surface-container-low": "#131313",
+                        "on-secondary-container": "#c9cdff",
+                        "inverse-on-surface": "#555555",
+                        "on-primary": "#0f00a4",
+                        "inverse-surface": "#f9f9f9",
+                        "primary": "#a3a6ff",
+                        "error-container": "#a70138",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "surface-container-highest": "#262626",
+                        "secondary-fixed-dim": "#babfff",
+                        "outline-variant": "#484848",
+                        "on-primary-container": "#0a0081",
+                        "on-secondary": "#000974",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "secondary-fixed": "#cbceff",
+                        "inverse-primary": "#494bd7",
+                        "background": "#0e0e0e",
+                        "tertiary-fixed": "#ff8ed2",
+                        "primary-container": "#9396ff",
+                        "surface-container": "#191919",
+                        "primary-fixed": "#9396ff",
+                        "surface-container-lowest": "#000000",
+                        "outline": "#757575",
+                        "primary-dim": "#6063ee",
+                        "on-error": "#490013",
+                        "on-error-container": "#ffb2b9",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "on-background": "#ffffff",
+                        "error-dim": "#d73357",
+                        "on-tertiary": "#701455",
+                        "on-surface-variant": "#ababab",
+                        "on-secondary-fixed-variant": "#3a45ad",
+                        "surface-variant": "#262626",
+                        "error": "#ff6e84",
+                        "on-tertiary-fixed": "#3b002b",
+                        "tertiary-dim": "#ef81c4",
+                        "on-primary-fixed": "#000000",
+                        "on-surface": "#ffffff",
+                        "surface": "#0e0e0e"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["Fira Code"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-10 110 L110 -10' stroke='white' stroke-opacity='0.05' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(163, 166, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.08);
+            transform: translateY(-4px);
+        }
+        .text-gradient {
+            background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #a3a6ff 0%, #6063ee 100%);
+        }
+        .section-padding {
+            padding-top: 7rem;
+            padding-bottom: 7rem;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary/30 scroll-smooth">
+<!-- Kinetic Background Overlay -->
+<div class="fixed inset-0 kinetic-bg pointer-events-none z-0"></div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/5 dark:bg-black/5 backdrop-blur-xl border-b border-white/10 shadow-[0_20px_40px_rgba(99,102,241,0.08)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-extrabold tracking-tighter bg-gradient-to-br from-white to-white/40 bg-clip-text text-transparent">
+                Natanael Isaac
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-['Inter'] font-bold text-sm tracking-[0.1rem] uppercase text-indigo-400 border-b-2 border-indigo-500 pb-1" href="#home">Work</a>
+<a class="font-['Inter'] font-bold text-sm tracking-[0.1rem] uppercase text-white/60 hover:text-white transition-all" href="#skills">Skills</a>
+<a class="font-['Inter'] font-bold text-sm tracking-[0.1rem] uppercase text-white/60 hover:text-white transition-all" href="#about">About</a>
+<a class="font-['Inter'] font-bold text-sm tracking-[0.1rem] uppercase text-white/60 hover:text-white transition-all" href="#contact">Contact</a>
+</div>
+<button class="primary-gradient text-on-primary-fixed font-bold py-2 px-6 rounded-full hover:scale-105 transition-transform duration-200 shadow-[10px_10px_20px_rgba(99,102,241,0.3)]">
+                Hire Me
+            </button>
+</div>
+</nav>
+<main class="relative z-10 max-w-7xl mx-auto px-6">
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 pt-20" id="home">
+<div class="flex-1 space-y-6">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Hello, my name is
+                </div>
+<h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-tight text-gradient">
+                    Natanael Isaac
+                </h1>
+<h2 class="text-2xl md:text-3xl font-bold text-primary flex items-center gap-2">
+                    Web Developer <span class="h-px w-12 bg-primary/30"></span>
+</h2>
+<p class="text-on-surface-variant text-lg max-w-lg leading-relaxed">
+                    Architecting high-performance digital experiences with a focus on clean code and immersive user interfaces.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="primary-gradient px-8 py-4 rounded-full font-bold text-on-primary shadow-lg hover:shadow-primary/40 transition-all">
+                        View My Work
+                    </button>
+<button class="px-8 py-4 rounded-full font-bold border border-white/20 hover:bg-white/5 transition-all">
+                        Contact Me
+                    </button>
+</div>
+</div>
+<div class="flex-1 relative w-full max-w-2xl">
+<!-- Terminal Window -->
+<div class="glass-card rounded-xl overflow-hidden shadow-2xl">
+<div class="bg-white/10 px-4 py-2 flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+<span class="ml-4 text-xs font-mono text-white/40">developer.js</span>
+</div>
+<div class="p-6 font-mono text-sm leading-relaxed text-green-400/90">
+<p><span class="text-tertiary">const</span> developer = {</p>
+<p class="pl-4">name: <span class="text-primary-fixed-dim">'Natanael Isaac'</span>,</p>
+<p class="pl-4">role: <span class="text-primary-fixed-dim">'Fullstack Web Developer'</span>,</p>
+<p class="pl-4">location: <span class="text-primary-fixed-dim">'The Digital Void'</span>,</p>
+<p class="pl-4">skills: [<span class="text-secondary-dim">'React'</span>, <span class="text-secondary-dim">'Next.js'</span>, <span class="text-secondary-dim">'Tailwind'</span>],</p>
+<p class="pl-4">passionate: <span class="text-tertiary">true</span></p>
+<p>};</p>
+<div class="mt-4 flex items-center gap-2">
+<span class="animate-pulse">_</span>
+</div>
+</div>
+</div>
+<!-- Floating Tech Pills -->
+<div class="absolute -bottom-6 -right-6 flex flex-col gap-3">
+<div class="glass-card px-4 py-2 rounded-full text-xs font-bold tracking-widest text-primary border-primary/20 animate-bounce">REACT</div>
+<div class="glass-card px-4 py-2 rounded-full text-xs font-bold tracking-widest text-secondary border-secondary/20 animate-bounce" style="animation-delay: 0.2s">NEXT.JS</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="section-padding" id="about">
+<div class="flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1 relative group">
+<div class="absolute -inset-4 bg-primary/10 rounded-lg blur-2xl group-hover:bg-primary/20 transition-all"></div>
+<div class="relative glass-card aspect-square rounded-lg overflow-hidden border-2 border-white/5">
+<img class="w-full h-full object-cover grayscale contrast-125 mix-blend-luminosity" data-alt="Modern professional portrait of a web developer in a minimalist dark setting with subtle indigo atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ4kz9jnBJEAsrc5CU1dlyYguRbjGryiX4Tq6z94cvrVwoS7pyiVv_xBZPY-WbfpQkbpbuk_k655SxE_SLcjpQt8uoazRl1nnQnYZYXbY8mMTKF5-cVObl7N4FXfHQx-AmScp-Hk_7wyLkjhMNn__UuPbLTGh_ZDOCP6u43EXwvTxgJCSekwA2n_itPh7cvbWVYx-b2cXJk2vfzFe4VgIhCpP4fCQEab4hKYSByuozmeZvlti-m_dWg6OKlC2lc-v0GE8mfsg8ArkX"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+</div>
+</div>
+<div class="flex-1 space-y-8">
+<h2 class="text-4xl md:text-5xl font-extrabold text-gradient">About <span class="text-primary">Me</span></h2>
+<h3 class="text-2xl font-bold text-on-surface">Software Developer &amp; UI/UX Enthusiast</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                        I specialize in building robust digital products that bridge the gap between complex backend architecture and fluid user experiences. My approach is rooted in minimalist aesthetics and technical precision.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">chevron_right</span>
+<span class="text-sm font-medium">Modern Tech Stack</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">chevron_right</span>
+<span class="text-sm font-medium">Scalable Solutions</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">chevron_right</span>
+<span class="text-sm font-medium">Responsive Design</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">chevron_right</span>
+<span class="text-sm font-medium">UX Research</span>
+</div>
+</div>
+<div class="flex gap-4 pt-4">
+<button class="primary-gradient px-6 py-3 rounded-full font-bold text-on-primary text-sm">Get In Touch</button>
+<button class="px-6 py-3 rounded-full font-bold border border-white/20 hover:bg-white/5 text-sm transition-all">Download CV</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="section-padding" id="projects">
+<h2 class="text-4xl md:text-5xl font-extrabold text-gradient mb-16">My <span class="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Projects</span></h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="glass-card rounded-xl group flex flex-col">
+<div class="h-48 bg-surface-container overflow-hidden rounded-t-xl relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="Digital map visualization with glowing data points and dark UI elements on a modern mobile device interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyZLUB5GRu-cJJTMwc6AvdR7n17CyOQyaSslc34s8F79a5RK1x4V1j1ZIM6FIqKuNZjfRuNbuP8MT4dEVnRBtzeAthCL760XCAHRTW4biI6pCwqmXcwWf3Jw2igzJ35NLVgYtKpHJo02lKzpP-sl6X722rYR66q9wMWOHmDnTIxZwZYasvEACx_SJVscYR522HFOLFu_bCQylENblfaBXwRqyN8hSYiEdPIQP_1_lNsBHVYifauh5UDWlk0LKBoE7f4H1oxdEiAkz0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+</div>
+<div class="p-8 space-y-4 flex-1">
+<h3 class="text-xl font-bold">ChefPoint Locate Demo</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Real-time GPS tracking and restaurant discovery platform with integrated interactive maps.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="label-md bg-white/5 px-2 py-1 rounded text-[10px] font-bold tracking-widest text-primary-fixed-dim border border-white/5">REACT</span>
+<span class="label-md bg-white/5 px-2 py-1 rounded text-[10px] font-bold tracking-widest text-primary-fixed-dim border border-white/5">GOOGLE MAPS</span>
+</div>
+<div class="pt-6 flex justify-between items-center">
+<a class="text-primary text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all" href="#">VIEW PROJECT <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+<span class="material-symbols-outlined text-white/20">terminal</span>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="glass-card rounded-xl group flex flex-col">
+<div class="h-48 bg-surface-container overflow-hidden rounded-t-xl relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="High-end restaurant management dashboard with sleek dark cards, analytics charts, and elegant food photography thumbnails" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfMetDKfIPdBjzhyMJDjF6r7dwea7QzN2dwuQwhssWfZUPGVlur3mgXC_05j79Qe0Kb4CE0DxMicGIAWowXzhTegBs4Bzm6_xzPekcSGQKXUGNxyNzRhYWnDtpQh0jQYXP4cfOVyFtzKmuXQd-MrPfNrzfrfIM3l1nt1C6wpkuUIaeYcZliVEL69kJhxB93lPSjka7JaoPoTcC7J-Xjp3_WQek362OSasOVcAaY6MzSl5156OTSjodasgSdRTCG1YI4ehuhXEVUYFs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+</div>
+<div class="p-8 space-y-4 flex-1">
+<h3 class="text-xl font-bold">ChefPoint</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Comprehensive restaurant management dashboard featuring inventory control and order analytics.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="label-md bg-white/5 px-2 py-1 rounded text-[10px] font-bold tracking-widest text-primary-fixed-dim border border-white/5">NEXT.JS</span>
+<span class="label-md bg-white/5 px-2 py-1 rounded text-[10px] font-bold tracking-widest text-primary-fixed-dim border border-white/5">FIREBASE</span>
+</div>
+<div class="pt-6 flex justify-between items-center">
+<a class="text-primary text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all" href="#">VIEW PROJECT <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+<span class="material-symbols-outlined text-white/20">restaurant</span>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="glass-card rounded-xl group flex flex-col">
+<div class="h-48 bg-surface-container overflow-hidden rounded-t-xl relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist financial application UI showing transaction history and invoice generation tools in a dark sleek mode" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf5kpGkrQZBIwibBEmv0dvaN3ye6f5cpX72-njAvVAgq3s_ymcntJ9qNflPScnjOA_uPRhZA7TkmVczpy1zIM_I3_qhXD43KPPvffXj8of0fhhagPOqsTp-cjMPba8pIq1bai7Jfo82R0jx5BxO6EcNzEKGq5yx_0yn00A6CoKdSTrQJpyQ41IhsV9ITQGD_pNv2s2ezx5ntMZk4FNj0EwftDlTenG5ESbK5fuC1PzEL9tn3nmITnJ3QRJOa3VtlEehp5QWfw9qUvT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+</div>
+<div class="p-8 space-y-4 flex-1">
+<h3 class="text-xl font-bold">Sistema de Facturación</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Streamlined invoice generation system for small businesses with automated PDF exports.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="label-md bg-white/5 px-2 py-1 rounded text-[10px] font-bold tracking-widest text-primary-fixed-dim border border-white/5">JS</span>
+<span class="label-md bg-white/5 px-2 py-1 rounded text-[10px] font-bold tracking-widest text-primary-fixed-dim border border-white/5">TAILWIND</span>
+</div>
+<div class="pt-6 flex justify-between items-center">
+<a class="text-primary text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all" href="#">VIEW PROJECT <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+<span class="material-symbols-outlined text-white/20">receipt_long</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="section-padding" id="skills">
+<h2 class="text-4xl md:text-5xl font-extrabold text-gradient mb-16 text-center">My <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Skills</span></h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Frontend -->
+<div class="glass-card p-10 space-y-8">
+<h3 class="text-xs font-bold tracking-[0.2em] text-white/40 uppercase">Frontend Development</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>React / Next.js</span>
+<span class="text-primary">90%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-1 primary-gradient" style="width: 90%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Tailwind CSS</span>
+<span class="text-primary">95%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-1 primary-gradient" style="width: 95%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Backend -->
+<div class="glass-card p-10 space-y-8">
+<h3 class="text-xs font-bold tracking-[0.2em] text-white/40 uppercase">Backend &amp; Database</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Node.js / Express</span>
+<span class="text-secondary">85%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-1 bg-gradient-to-r from-secondary to-secondary-dim" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>PostgreSQL / Firebase</span>
+<span class="text-secondary">80%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-1 bg-gradient-to-r from-secondary to-secondary-dim" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tools -->
+<div class="glass-card p-10 space-y-8">
+<h3 class="text-xs font-bold tracking-[0.2em] text-white/40 uppercase">Tools &amp; Others</h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Git / CI/CD</span>
+<span class="text-tertiary">88%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-1 bg-gradient-to-r from-tertiary to-tertiary-dim" style="width: 88%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Figma / UI Design</span>
+<span class="text-tertiary">75%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-1 bg-gradient-to-r from-tertiary to-tertiary-dim" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="section-padding" id="contact">
+<h2 class="text-4xl md:text-5xl font-extrabold text-gradient mb-16 text-center">Get In <span class="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Touch</span></h2>
+<div class="max-w-4xl mx-auto glass-card p-12 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-8">
+<h3 class="text-2xl font-bold">Let's build something epic.</h3>
+<p class="text-on-surface-variant">I'm currently available for freelance projects and full-time opportunities.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<span class="text-sm font-medium">hi@natanael.dev</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary">call</span>
+</div>
+<span class="text-sm font-medium">+1 (234) 567-890</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<span class="text-sm font-medium">Remote / World</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-center items-center md:items-end gap-6">
+<h4 class="text-xs font-bold tracking-widest text-white/40 uppercase">Find me on social</h4>
+<div class="flex gap-4">
+<a class="w-12 h-12 glass-card rounded-full flex items-center justify-center hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">code</span>
+</a>
+<a class="w-12 h-12 glass-card rounded-full flex items-center justify-center hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">link</span>
+</a>
+<a class="w-12 h-12 glass-card rounded-full flex items-center justify-center hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined">photo_camera</span>
+</a>
+</div>
+<button class="primary-gradient w-full py-4 rounded-xl font-bold text-on-primary-fixed mt-4">
+                        Send Message
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-black py-12 border-t border-white/5">
+<div class="flex flex-col items-center gap-6 w-full">
+<div class="flex gap-8">
+<a class="font-['Inter'] text-xs uppercase tracking-[0.1rem] font-medium text-white/40 hover:text-indigo-400 transition-colors" href="#">Github</a>
+<a class="font-['Inter'] text-xs uppercase tracking-[0.1rem] font-medium text-white/40 hover:text-indigo-400 transition-colors" href="#">LinkedIn</a>
+<a class="font-['Inter'] text-xs uppercase tracking-[0.1rem] font-medium text-white/40 hover:text-indigo-400 transition-colors" href="#">Twitter</a>
+</div>
+<p class="font-['Inter'] text-xs uppercase tracking-[0.1rem] font-medium text-white/40">
+                © 2025 Natanael Isaac. Built in the Void.
+            </p>
+</div>
+</footer>
+<!-- Bottom Bounce Arrow -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 animate-bounce pointer-events-none z-20">
+<span class="material-symbols-outlined text-white/20 text-3xl">keyboard_double_arrow_down</span>
+</div>
+</body></html>

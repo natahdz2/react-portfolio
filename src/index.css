@@ -1,62 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 217.2 91.2% 59.8%;
-  }
+/* ─────────────────────────────────────────
+   DESIGN TOKENS — The Curator × Carbon
+───────────────────────────────────────── */
+:root {
+  --bg:           #0e0e0e;
+  --surface:      #131313;
+  --surface-hi:   #1c1b1b;
+  --surface-hhi:  #252525;
+  --on-bg:        #e5e2e1;
+  --on-muted:     #8e9195;
+  --accent:       #4F75FF;   /* signature blue */
+  --accent-dim:   #3a5bd4;
+  --serif:        'Noto Serif', Georgia, serif;
+  --sans:         'Inter', system-ui, sans-serif;
+  --mono:         'Fira Code', monospace;
+  --radius-sm:    2px;
+  --radius-md:    4px;
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* ─── Base ─── */
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
+
   html {
     scroll-behavior: smooth;
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--on-bg);
+    overflow-x: hidden;
+  }
+
+  ::selection { background: rgba(79,117,255,.25); color: #fff; }
+}
+
+/* ─── Fluid typography ─── */
+h1 { font-size: clamp(3rem, 8vw, 8rem); }
+h2 { font-size: clamp(2rem, 5vw, 4.5rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+
+/* ─────────────────────────────────────────
+   CANVAS LAYER (Carbon Particles)
+───────────────────────────────────────── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .6;
+}
+
+/* ─────────────────────────────────────────
+   KINETIC BACKGROUND
+───────────────────────────────────────── */
+.kinetic-bg {
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(79,117,255,.04) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(130,135,255,.03) 0%, transparent 50%),
+    radial-gradient(circle at 60% 80%, rgba(79,117,255,.03) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ─────────────────────────────────────────
+   NAVIGATION — Curator Style
+───────────────────────────────────────── */
+.nav-shell {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: transparent;
+  transition: background .4s var(--ease-out), border-color .4s var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+.nav-shell.scrolled,
+.nav-glass {
+  background: rgba(14,14,14,.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* Mobile menu glass */
+.mobile-menu {
+  background: rgba(10,10,10,.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* ─────────────────────────────────────────
+   GLASS CARD — Curator × Carbon
+───────────────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,.025);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.07);
+  transition: border-color .35s var(--ease-out),
+              box-shadow    .35s var(--ease-out),
+              transform     .35s var(--ease-out);
+}
+.glass-card:hover {
+  border-color: rgba(79,117,255,.25);
+  box-shadow: 0 20px 48px rgba(79,117,255,.08);
+}
+
+/* ─────────────────────────────────────────
+   EDITORIAL PROJECT GRID
+───────────────────────────────────────── */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+.project-card {
+  container-type: inline-size;
+}
+/* Staggered offset — even cards drop down */
+@media (min-width: 768px) {
+  .project-card:nth-child(even) { margin-top: 6rem; }
+}
+
+/* ─────────────────────────────────────────
+   GRADIENT UTILITIES
+───────────────────────────────────────── */
+.primary-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, #6d8fff 100%);
+}
+.text-gradient {
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,.55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─────────────────────────────────────────
+   PROGRESS BARS
+───────────────────────────────────────── */
+.progress-track {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, #818cf8 100%);
+  width: 0%;
+  transition: width 1.4s var(--ease-out);
+}
+
+/* ─────────────────────────────────────────
+   MAGNETIC BUTTON
+───────────────────────────────────────── */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .25s var(--ease-spring),
+              box-shadow .25s var(--ease-out);
+  will-change: transform;
+}
+.btn-magnetic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.06);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.btn-magnetic:hover::before { opacity: 1; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #6d8fff 100%);
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(79,117,255,0);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 32px rgba(79,117,255,.45);
+}
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,.18);
+  color: var(--on-bg);
+}
+.btn-ghost:hover {
+  border-color: rgba(79,117,255,.5);
+}
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s var(--ease-out),
+              transform .8s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────
+   SHIMMER — media placeholder
+───────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,.04) 25%,
+    rgba(255,255,255,.10) 50%,
+    rgba(255,255,255,.04) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ─────────────────────────────────────────
+   TYPOGRAPHY — Curator editorial accents
+───────────────────────────────────────── */
+.headline-serif {
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: .92;
+  color: var(--on-bg);
+}
+.headline-italic {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255,255,255,.55);
+}
+.label-meta {
+  font-family: var(--sans);
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--on-muted);
+}
+.accent-blue { color: var(--accent); }
+
+/* ─────────────────────────────────────────
+   SECTION SPACING
+───────────────────────────────────────── */
+.section-padding {
+  padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 4rem);
+}
+.section-pad { padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 4rem); }
+.max-content  { max-width: 1440px; margin-inline: auto; }
+
+/* ─────────────────────────────────────────
+   DIVIDER — thin editorial line
+───────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+}
+
+/* ─────────────────────────────────────────
+   TERMINAL CODE BLOCK
+───────────────────────────────────────── */
+.terminal {
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.terminal-bar {
+  background: rgba(255,255,255,.06);
+  padding: .6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.dot  { width: 11px; height: 11px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+.cursor-blink {
+  display: inline-block; width: 8px; height: 1.1em;
+  background: #4ade80; vertical-align: text-bottom;
+  animation: blink 1s step-end infinite; border-radius: 1px;
+}
+@keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
+@keyframes spin  { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ─────────────────────────────────────────
+   3D HERO CARD — Editorial Floating Piece
+───────────────────────────────────────── */
+.hero-3d-wrap {
+  perspective: 900px;
+  perspective-origin: center center;
+}
+.hero-3d-card {
+  transform-style: preserve-3d;
+  transition: transform .08s linear;
+  will-change: transform;
+}
+
+/* ─────────────────────────────────────────
+   SKILL CARDS — Curator editorial dividers
+───────────────────────────────────────── */
+.skill-card {
+  border-top: 1px solid rgba(255,255,255,.10);
+  padding-top: 2rem;
+  transition: border-color .3s;
+}
+.skill-card:hover { border-color: var(--accent); }
+
+/* ─────────────────────────────────────────
+   CONTACT PANEL
+───────────────────────────────────────── */
+.contact-info-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: border-color .25s;
+}
+.contact-info-row:hover { border-color: rgba(79,117,255,.4); }
+
+/* ─────────────────────────────────────────
+   PROJECT CARD — Editorial aspect
+───────────────────────────────────────── */
+.project-media-wrap {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--surface-hi);
+}
+.project-media-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  backdrop-filter: blur(4px);
+  background: rgba(14,14,14,.7);
+  transition: opacity .5s;
+}
+.project-media-shimmer.hidden-shimmer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   FLOAT ANIMATIONS
+───────────────────────────────────────── */
+.float-1 { animation: floatPill 3.2s ease-in-out infinite; }
+.float-2 { animation: floatPill 4.0s ease-in-out infinite .4s; }
+.float-3 { animation: floatPill 3.6s ease-in-out infinite .8s; }
+.float-4 { animation: floatPill 4.4s ease-in-out infinite 1.2s; }
+@keyframes floatPill {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE OVERRIDES
+───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .project-card:nth-child(even) { margin-top: 0; }
+  .project-media-wrap { aspect-ratio: 16/9; }
 }

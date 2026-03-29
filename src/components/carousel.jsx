@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Carousel({ images, title, autoplayInterval = 3000 }) {
+export default function Carousel({ images, title, autoplayInterval = 3000, objectFit = "cover" }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -35,7 +35,8 @@ export default function Carousel({ images, title, autoplayInterval = 3000 }) {
             key={i}
             src={img || "/placeholder.svg"}
             alt={`${title} screenshot ${i + 1}`}
-            className="w-full h-full object-cover flex-shrink-0"
+            className="w-full h-full flex-shrink-0"
+            style={{ objectFit }}
           />
         ))}
       </div>
@@ -58,9 +59,7 @@ export default function Carousel({ images, title, autoplayInterval = 3000 }) {
           <button
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={`w-2 h-2 rounded-full ${
-              i === currentSlide ? "bg-white" : "bg-white/50"
-            }`}
+            className={`w-2 h-2 rounded-full ${i === currentSlide ? "bg-white" : "bg-white/50"}`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}

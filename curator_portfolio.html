@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#201f1f",
+              "on-tertiary-fixed": "#241a11",
+              "inverse-primary": "#595f66",
+              "outline": "#8e9195",
+              "on-background": "#e5e2e1",
+              "tertiary-container": "#f3dfd0",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-bright": "#393939",
+              "secondary-container": "#3e495d",
+              "surface-dim": "#131313",
+              "on-secondary-fixed": "#111c2d",
+              "on-primary-fixed": "#161c22",
+              "outline-variant": "#44474a",
+              "primary-container": "#dde3eb",
+              "on-primary": "#2b3137",
+              "on-secondary-fixed-variant": "#3c475a",
+              "primary": "#ffffff",
+              "tertiary-fixed": "#f3dfd0",
+              "inverse-on-surface": "#313030",
+              "on-tertiary-fixed-variant": "#51443a",
+              "surface-container-high": "#2a2a2a",
+              "on-primary-fixed-variant": "#41474e",
+              "surface-container-highest": "#353534",
+              "surface": "#131313",
+              "error": "#ffb4ab",
+              "error-container": "#93000a",
+              "surface-container-low": "#1c1b1b",
+              "secondary-fixed": "#d8e3fb",
+              "secondary-fixed-dim": "#bcc7de",
+              "on-secondary": "#263143",
+              "on-surface-variant": "#c5c6cb",
+              "background": "#131313",
+              "secondary": "#bcc7de",
+              "on-surface": "#e5e2e1",
+              "surface-tint": "#c1c7cf",
+              "tertiary-fixed-dim": "#d6c3b5",
+              "on-tertiary": "#3a2e24",
+              "on-primary-container": "#5f656c",
+              "inverse-surface": "#e5e2e1",
+              "on-tertiary-container": "#706256",
+              "tertiary": "#ffffff",
+              "surface-variant": "#353534",
+              "primary-fixed": "#dde3eb",
+              "on-error-container": "#ffdad6",
+              "on-secondary-container": "#aeb9d0",
+              "on-error": "#690005",
+              "primary-fixed-dim": "#c1c7cf"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .editorial-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+      }
+      body {
+        background-color: #131313;
+        color: #e5e2e1;
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-surface selection:bg-secondary-container selection:text-primary">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-900/70 dark:bg-neutral-950/70 backdrop-blur-xl shadow-2xl shadow-black/20">
+<div class="flex justify-between items-center px-8 py-6 max-w-screen-2xl mx-auto">
+<div class="font-serif text-2xl tracking-tighter text-neutral-100 dark:text-neutral-50">
+                The Curator
+            </div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-serif tracking-tight text-neutral-100 dark:text-neutral-50 border-b border-neutral-100/30 pb-1" href="#">Portfolio</a>
+<a class="font-serif tracking-tight text-neutral-400 dark:text-neutral-500 hover:text-neutral-200 transition-colors duration-300" href="#">Services</a>
+<a class="font-serif tracking-tight text-neutral-400 dark:text-neutral-500 hover:text-neutral-200 transition-colors duration-300" href="#">Archive</a>
+<a class="font-serif tracking-tight text-neutral-400 dark:text-neutral-500 hover:text-neutral-200 transition-colors duration-300" href="#">About</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-sm font-label text-sm uppercase tracking-widest hover:opacity-80 transition-all duration-400 ease-in-out active:scale-95">
+                Get in Touch
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section: Editorial Impact -->
+<section class="min-h-screen pt-32 pb-24 px-8 max-w-screen-2xl mx-auto flex flex-col justify-center">
+<div class="editorial-grid gap-y-12 items-end">
+<div class="col-span-12 md:col-span-8">
+<h1 class="font-headline text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] text-on-background mb-8">
+                        Precision in <br/>
+<span class="italic text-primary-fixed-dim">Digital Craft.</span>
+</h1>
+</div>
+<div class="col-span-12 md:col-span-4 md:pl-12 pb-4">
+<p class="font-body text-lg md:text-xl text-on-surface-variant leading-relaxed">
+                        A multidisciplinary design practice focusing on the intersection of architectural structure and digital interface. I curate experiences that stand the test of time.
+                    </p>
+</div>
+</div>
+<div class="mt-20 w-full aspect-[21/9] overflow-hidden rounded-sm relative group">
+<img alt="Professional portrait" class="w-full h-full object-cover grayscale brightness-75 transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist professional portrait of a designer in a dark studio setting with dramatic shadows and high contrast silver lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClXCZSO61iRJ-vG7RdJrBHPPfsl4fbCWhdaRkTC7aqqgxChRxz8w9DFSnQsoI62aNCXz8vlkKmUI-fn2aJ1y9aZOMWksSSZNjeNG1WnTKMfEbmtOx3TW-uoCX-3fga7nCMRGmYoAvYaacf1X1qhhXldLvmxScDFHTcGkDY0h7GmBR9u2-RxDtNgrc2H3xsGoWL2XXbcuSs_DATELxa-HaBlpJnQ4pwKDYdvPkOAGaLRtVId-xPZBR7pY0wU7Pb8jAPAGsxOr75zoo_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-40"></div>
+</div>
+</section>
+<!-- Projects: Curated Grid -->
+<section class="py-32 px-8 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-24 space-y-4">
+<h2 class="font-headline text-4xl md:text-5xl tracking-tighter text-on-background">Selected Works</h2>
+<span class="font-label text-xs uppercase tracking-[0.3em] text-outline italic">Curated Edition 2024</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+<!-- Project 1 -->
+<div class="flex flex-col space-y-8 group">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-high rounded-sm">
+<img alt="Project alpha" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" data-alt="Modernist glass skyscraper reflecting a deep blue sky with sharp architectural lines and monochromatic tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSGYJq_jOZFAT4scPJk15PU7_YMRIM-MWMFoeXmzD5yEEcfo5fossqeW2mBYOnUostdfkt6gC9u8mRMlGnBhSqBn4QQt7ce0IaeRa7ROq-wCstdhrcxyhKrOiJQTyFZCXWZj_iie75SBvHulyyzMDN-OaVDOYsZ7852cKtRbBgSxxkgI4sE5hM3UX0VhAOZ1F0PfSXMe3wfhumDrl74kCjDV19QETa4WhT5LQ_S953ChPGmmbZC_nRv1sRzpXXy_nEBim3t5vTYsJF"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-serif text-2xl mb-2 text-on-background">Struktur Archive</h3>
+<p class="font-label text-xs uppercase tracking-widest text-outline">Digital Brand Identity</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="flex flex-col space-y-8 group md:mt-32">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-high rounded-sm">
+<img alt="Project beta" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" data-alt="Sophisticated minimalist interior design with a single mid-century modern lamp casting soft warm light on a charcoal wall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0Mb_T2GpYksCS7OWXH382ckN94EkyZUmV5z-3w2MoBUrESwPF_QX3jjDuNAnNY3rDtdONZP7e1F2rFWhOKMmLVJz39goj571nLnITHHeDc_d1ClVkNweZjMiaKwg1Wy6DoHqDX0eBsJFtBXc3D4GTSZj2ySqXfOBEJnRGtZVkOAVDZ5H_QQqfJEcUxH_HDI0oUx_W0NDd7IEVpvzmjShDiak61zMxWMIorKFMainOa1lELdJIEC8DGTdoiXm_Aj9E0nid5VsDVKvA"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-serif text-2xl mb-2 text-on-background">Lumina Collective</h3>
+<p class="font-label text-xs uppercase tracking-widest text-outline">Editorial Web Experience</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="flex flex-col space-y-8 group">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-high rounded-sm">
+<img alt="Project gamma" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" data-alt="Abstract geometric composition of steel and concrete with sharp diagonal shadows and silver metallic highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXiU8Smq-0Xz95O2w8tpCuLUt6SQBXq8Jwya41DUceRc1KuIM5DVz875bgrnqof3EpTZTfq15bHcmQUum-9D6O13WXCmII_MP3GLSF3hzEgMgrU8v9sC-X7Zb21_x5glTT52fcBk1RI5_6kjiB16GTCogPyW6c2O6IyuA1kw4EqlnPsGqXZY6TxxyIgm2GhM_UZMYP3vjabmuaXXb_o019dD9zYCQNR95Je32CMDw98-ls9cJC8FJMC3pZDSSch8KIlcCIghMCJZiL"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-serif text-2xl mb-2 text-on-background">Monolith Systems</h3>
+<p class="font-label text-xs uppercase tracking-widest text-outline">Product Design &amp; Strategy</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="flex flex-col space-y-8 group md:mt-32">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-high rounded-sm">
+<img alt="Project delta" class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105" data-alt="Clean desk setup with a high-end metal mechanical keyboard and a single piece of dark slate, representing precision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYrYCJOmS6Yi5acqTrf4Q-ozVsBXHZfHUoFiUtvS2Y7rn7fqU9TlnNwyb4aGO9a0rzyI2PKJem9bP5I9VxZk2uFBjPQfa9cu1Je1a-yt_Eyoe3chVMcFL09lvi93kDUQmxSY5h3v_JTCK9mL32KT33ierRJ00KSDA6aLiSV2Usfh-wPqVWmE6zMNL9foyikSXFoGESYog3iFUqU0B1zYMjc3r5XAyXQR6JjADIGZYxetPiYAWjPaPgdP4-KWoIZzx3Bjfcca6bEEgO"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-serif text-2xl mb-2 text-on-background">The Archive UI</h3>
+<p class="font-label text-xs uppercase tracking-widest text-outline">Minimalist Interface Framework</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills: Minimal Layout -->
+<section class="py-32 px-8 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
+<div class="md:col-span-4">
+<h2 class="font-headline text-4xl tracking-tighter text-on-background sticky top-32">Competencies</h2>
+</div>
+<div class="md:col-span-8 space-y-20">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16">
+<div>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary mb-4 block">01 / Aesthetic</span>
+<h4 class="font-serif text-xl mb-4 text-primary">Creative Direction</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">Synthesizing brand heritage with contemporary digital trends to create cohesive visual narratives.</p>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary mb-4 block">02 / Utility</span>
+<h4 class="font-serif text-xl mb-4 text-primary">Interface Design</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">Precision-engineered layouts that prioritize clarity, accessibility, and architectural hierarchy.</p>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary mb-4 block">03 / Movement</span>
+<h4 class="font-serif text-xl mb-4 text-primary">Experience Strategy</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">Mapping intentional user journeys that respect cognitive load and enhance brand perception.</p>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary mb-4 block">04 / Logic</span>
+<h4 class="font-serif text-xl mb-4 text-primary">Design Systems</h4>
+<h4 class="font-serif text-xl mb-4 text-primary">Design Systems</h4>
+<p class="text-on-surface-variant font-body leading-relaxed">Building robust, scalable component libraries with technical precision and documentation.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact: Sophisticated Section -->
+<section class="py-32 px-8 bg-surface-container-lowest">
+<div class="max-w-screen-2xl mx-auto editorial-grid gap-y-12">
+<div class="col-span-12 md:col-span-7">
+<h2 class="font-headline text-5xl md:text-7xl lg:text-8xl tracking-tight text-on-background mb-12">
+                        Let’s craft something <br/>
+<span class="italic text-primary-fixed-dim">exceptional.</span>
+</h2>
+<div class="space-y-4">
+<p class="font-body text-xl text-on-surface-variant">Available for select collaborations and advisory roles.</p>
+<a class="inline-block font-serif text-2xl md:text-3xl border-b-2 border-primary-fixed-dim pb-2 hover:text-primary transition-colors" href="mailto:hello@thecurator.design">
+                            hello@thecurator.design
+                        </a>
+</div>
+</div>
+<div class="col-span-12 md:col-span-5 flex flex-col justify-end md:items-end">
+<div class="flex flex-col space-y-8 w-full md:max-w-xs">
+<div class="group cursor-pointer">
+<label class="font-label text-[10px] uppercase tracking-widest text-outline block mb-2">Subject</label>
+<div class="w-full bg-surface-container-low px-4 py-4 rounded-sm border-b border-outline-variant group-hover:border-primary transition-all">
+<span class="text-on-surface-variant text-sm">Inquiry regarding collaboration</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary w-full py-5 rounded-sm font-label text-sm uppercase tracking-[0.2em] hover:opacity-90 transition-all flex justify-center items-center gap-2">
+                            Initialize Project
+                            <span class="material-symbols-outlined text-lg">trending_flat</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-20 px-8 bg-neutral-900 dark:bg-neutral-950">
+<div class="flex flex-col md:flex-row justify-between items-center border-t border-neutral-800/30 pt-12 max-w-screen-2xl mx-auto">
+<div class="font-sans text-xs tracking-widest uppercase text-neutral-400 dark:text-neutral-500 mb-8 md:mb-0">
+                © 2024 The Curator. Built with Precision.
+            </div>
+<div class="flex space-x-12">
+<a class="font-sans text-xs tracking-widest uppercase text-neutral-500 hover:text-neutral-200 transition-colors" href="#">LinkedIn</a>
+<a class="font-sans text-xs tracking-widest uppercase text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Dribbble</a>
+<a class="font-sans text-xs tracking-widest uppercase text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Read.cv</a>
+<a class="font-sans text-xs tracking-widest uppercase text-neutral-500 hover:text-neutral-200 transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+</body></html>
