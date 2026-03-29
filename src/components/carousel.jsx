@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// 1. El objectFit por defecto vuelve a ser "cover" para llenar el espacio
 export default function Carousel({ images, title, autoplayInterval = 3000, objectFit = "cover" }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -23,7 +24,8 @@ export default function Carousel({ images, title, autoplayInterval = 3000, objec
   };
 
   return (
-    <div className="relative w-full h-full">
+    // 2. Mantenemos "overflow-hidden" y añadimos un fondo gris oscuro sutil
+    <div className="relative w-full h-full overflow-hidden" style={{ background: "rgba(10,10,14,0.85)" }}>
       <div
         className="absolute inset-0 flex transition-transform duration-500 ease-in-out"
         style={{
@@ -36,6 +38,7 @@ export default function Carousel({ images, title, autoplayInterval = 3000, objec
             src={img || "/placeholder.svg"}
             alt={`${title} screenshot ${i + 1}`}
             className="w-full h-full flex-shrink-0"
+            // 3. Esta imagen ahora siempre usará objectFit: "cover" (o lo que pases)
             style={{ objectFit }}
           />
         ))}

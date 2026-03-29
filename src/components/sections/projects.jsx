@@ -28,13 +28,13 @@ function IframeMedia({ project }) {
             }}
           />
           <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", letterSpacing: ".08em", textTransform: "uppercase" }}>
-            Cargando…
+            Loading…
           </p>
           <a
             href={project.demo} target="_blank" rel="noopener noreferrer"
             style={{ fontSize: "11px", color: "#4F75FF" }}
           >
-            Abrir en nueva pestaña ↗
+            Open in new tab ↗
           </a>
         </div>
       )}
@@ -49,7 +49,6 @@ function IframeMedia({ project }) {
     </div>
   );
 }
-
 /* ─── Project Card ─── */
 function ProjectCard({ project, index, isInView }) {
   const [hovered, setHovered] = useState(false);
@@ -72,15 +71,16 @@ function ProjectCard({ project, index, isInView }) {
         height: "440px",
       }}
     >
-      {/* ── Media side (55%) ── */}
+      {/* ── Media side (AHORA 65% de ancho) ── */}
       <div
         style={{
           order: imgRight ? 2 : 1,
           flexShrink: 0,
-          width: "55%",
+          width: "65%", // <-- AUMENTADO DEL 55% al 65%
           height: "100%",
           position: "relative",
           overflow: "hidden",
+          background: "rgba(10,10,14,0.5)", // Fondo sutil por si hay huecos
         }}
       >
         {project.embedded ? (
@@ -92,7 +92,10 @@ function ProjectCard({ project, index, isInView }) {
             src={project.image || "/placeholder.svg"}
             alt={project.title}
             style={{
-              width: "100%", height: "100%", objectFit: "cover",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: imgRight ? "right center" : "left center", // <-- ANCLAJE: Evita que recorte el menú izquierdo
               transform: hovered ? "scale(1.04)" : "scale(1)",
               transition: "transform .6s ease",
             }}
@@ -104,8 +107,8 @@ function ProjectCard({ project, index, isInView }) {
           style={{
             position: "absolute", inset: 0,
             background: imgRight
-              ? "linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 55%)"
-              : "linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 55%)",
+              ? "linear-gradient(to left, rgba(0,0,0,0.6) 0%, transparent 40%)" // Ajustado el gradiente al nuevo ancho
+              : "linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 40%)",
             pointerEvents: "none",
             zIndex: 5,
           }}
@@ -164,15 +167,15 @@ function ProjectCard({ project, index, isInView }) {
         }}
       />
 
-      {/* ── Info side (45%) ── */}
+      {/* ── Info side (AHORA 35% de ancho) ── */}
       <div
         style={{
           order: imgRight ? 1 : 3,
-          flex: 1,
+          flex: 1, // Esto tomará el 35% restante
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "36px 32px",
+          padding: "36px 24px", // Reduje un poco el padding lateral (de 32 a 24) para que el texto respire mejor en un espacio más angosto
           minWidth: 0,
         }}
       >
@@ -192,7 +195,7 @@ function ProjectCard({ project, index, isInView }) {
             style={{
               fontFamily: "var(--serif, Georgia, serif)",
               fontWeight: 700,
-              fontSize: "clamp(1.35rem, 2vw, 1.85rem)",
+              fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)", // Ligeramente más pequeño por el nuevo ancho
               letterSpacing: "-.035em",
               color: "#fff",
               lineHeight: 1.2,
@@ -203,21 +206,21 @@ function ProjectCard({ project, index, isInView }) {
           </h3>
 
           {/* Description */}
-          <p style={{ fontSize: "13.5px", lineHeight: 1.7, color: "rgba(255,255,255,0.42)", marginBottom: "24px" }}>
+          <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: "rgba(255,255,255,0.42)", marginBottom: "24px" }}>
             {project.description}
           </p>
 
           {/* Tags */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
             {project.tags.map((tag) => (
               <span
                 key={tag}
                 style={{
-                  fontSize: "10px",
+                  fontSize: "9.5px",
                   letterSpacing: ".07em",
                   textTransform: "uppercase",
-                  padding: "5px 11px",
-                  borderRadius: "7px",
+                  padding: "4px 9px",
+                  borderRadius: "6px",
                   border: "1px solid rgba(255,255,255,0.09)",
                   color: "rgba(255,255,255,0.38)",
                   background: "rgba(255,255,255,0.035)",
@@ -230,18 +233,18 @@ function ProjectCard({ project, index, isInView }) {
         </div>
 
         {/* Links */}
-        <div style={{ display: "flex", alignItems: "center", gap: "20px", marginTop: "28px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginTop: "24px" }}>
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", letterSpacing: ".04em", color: "rgba(255,255,255,0.38)", textDecoration: "none" }}
+              style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", letterSpacing: ".04em", color: "rgba(255,255,255,0.38)", textDecoration: "none" }}
               onMouseEnter={e => e.currentTarget.style.color = "#fff"}
               onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.38)"}
             >
-              <span style={{ width: "32px", height: "32px", borderRadius: "9px", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Github size={13} />
+              <span style={{ width: "28px", height: "28px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Github size={12} />
               </span>
               GitHub
             </a>
@@ -251,18 +254,18 @@ function ProjectCard({ project, index, isInView }) {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", letterSpacing: ".04em", color: "rgba(255,255,255,0.38)", textDecoration: "none" }}
+              style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", letterSpacing: ".04em", color: "rgba(255,255,255,0.38)", textDecoration: "none" }}
               onMouseEnter={e => e.currentTarget.style.color = "#fff"}
               onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.38)"}
             >
-              <span style={{ width: "32px", height: "32px", borderRadius: "9px", border: `1px solid ${project.accent}50`, background: `${project.accent}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <ExternalLink size={13} style={{ color: project.accent }} />
+              <span style={{ width: "28px", height: "28px", borderRadius: "8px", border: `1px solid ${project.accent}50`, background: `${project.accent}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <ExternalLink size={12} style={{ color: project.accent }} />
               </span>
               Live Demo
             </a>
           )}
 
-          <span style={{ marginLeft: "auto", fontSize: "22px", color: hovered ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.12)", transition: "color .3s ease" }}>
+          <span style={{ marginLeft: "auto", fontSize: "20px", color: hovered ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.12)", transition: "color .3s ease" }}>
             ↗
           </span>
         </div>
@@ -270,34 +273,35 @@ function ProjectCard({ project, index, isInView }) {
     </div>
   );
 }
-
 /* ─── Main Section ─── */
 export default function Projects() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, threshold: 0.04 });
   const base = import.meta.env.BASE_URL;
 
+  const aiImages = ["A1.png", "A2.png"].map((img) => `${base}${img}`);
   const chefPointImages = [1, 2, 3, 4, 5, 6].map((n) => `${base}${n}.jfif`);
   const facturacionImages = [1, 2].map((n) => `${base}f${n}.jfif`);
 
   const projects = [
     {
       id: 1,
-      title: "ChefPoint Locate",
-      category: "Real-Time GPS Tracking",
-      description: "Aplicación de rastreo GPS en tiempo real con mapas interactivos, historial de ubicación y diseño responsivo. Abre el sidebar para ver el menú completo.",
-      tags: ["Firebase", "JavaScript", "Leaflet API", "Real-time"],
-      github: "https://github.com/natahdz2",
-      image: `${base}g1.png`,
-      accent: "#FF4D4D",
-      icon: "📡",
+      title: "VectorRAG",
+      category: "Private AI Document Assistant",
+      description: "Full-stack RAG application allowing users to query private documents with zero cloud data leakage. Features high-speed semantic searches using pgvector and runs local LLMs like Llama 3 via Ollama.",
+      tags: ["Next.js", "Node.js", "PostgreSQL", "pgvector", "Ollama", "Docker"],
+      github: "https://github.com/natahdz2/AI-Project",
+      carousel: true,
+      carouselImages: aiImages,
+      accent: "#8B5CF6",
+      icon: "🤖",
       imageRight: false,
     },
     {
       id: 2,
       title: "ChefPoint",
       category: "Restaurant Management System",
-      description: "Sistema integral para restaurantes: gestión de pedidos, inventario, staff y analíticas de ventas. Interfaz intuitiva con notificaciones en tiempo real para cocina.",
+      description: "Comprehensive restaurant system: order management, inventory, staff and sales analytics. Intuitive interface with real-time kitchen notifications.",
       tags: ["React", "NodeJS", "MySQL", "NextUI", "TailWind"],
       github: "https://github.com/natahdz2",
       carousel: true,
@@ -308,9 +312,9 @@ export default function Projects() {
     },
     {
       id: 3,
-      title: "Sistema de Facturación",
+      title: "Billing System",
       category: "Invoice Management",
-      description: "Sistema de facturación con generación e impresión de facturas PDF. Gestión de clientes, productos, inventario y historial completo de transacciones.",
+      description: "Billing system with PDF invoice generation and printing. Customer and product management, inventory and complete transaction history.",
       tags: ["JavaScript", "Bootstrap", "HTML/CSS", "JsPDF"],
       github: "https://github.com/natahdz2",
       carousel: true,
@@ -318,6 +322,18 @@ export default function Projects() {
       accent: "#4F75FF",
       icon: "🧾",
       imageRight: false,
+    },
+    {
+      id: 4,
+      title: "ChefPoint Locate",
+      category: "Real-Time GPS Tracking",
+      description: "Real-time GPS tracking application with interactive maps, location history and responsive design. Open the sidebar to see the full menu.",
+      tags: ["Firebase", "JavaScript", "Leaflet API", "Real-time"],
+      github: "https://github.com/natahdz2",
+      image: `${base}g1.png`,
+      accent: "#FF4D4D",
+      icon: "📡",
+      imageRight: true,
     },
   ];
 
@@ -347,7 +363,7 @@ export default function Projects() {
             </h2>
           </div>
           <p style={{ color: "rgba(255,255,255,0.32)", fontSize: "13.5px", maxWidth: "280px", lineHeight: 1.7, marginBottom: "6px" }}>
-            Cada proyecto es una pieza única de desarrollo construida para resolver un problema específico.
+            Each project is a unique piece of development built to solve a specific problem.
           </p>
         </div>
 

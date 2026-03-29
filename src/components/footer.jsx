@@ -25,8 +25,8 @@ export default function Footer() {
           {/* Social links */}
           <div className="flex gap-10">
             {[
-              { label: "GitHub",    href: "https://github.com/natahdz2" },
-              { label: "LinkedIn",  href: "https://www.linkedin.com/in/natanael-isaac-hernandez-rosario-81882335a/" },
+              { label: "GitHub", href: "https://github.com/natahdz2" },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/natanael-isaac-hernandez-rosario-81882335a/" },
               { label: "Instagram", href: "https://www.instagram.com/natahdez23/" },
             ].map((link) => (
               <a
@@ -48,11 +48,7 @@ export default function Footer() {
         </div>
 
         {/* ── Thin divider ── */}
-        <div className="mt-8 pt-8 border-t border-white/[0.04] flex justify-center">
-          <p className="label-meta text-white/15">
-            React · Vite · The Curator × Carbon Design System
-          </p>
-        </div>
+
       </div>
     </footer>
   );
