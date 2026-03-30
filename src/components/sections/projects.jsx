@@ -49,6 +49,7 @@ function IframeMedia({ project }) {
     </div>
   );
 }
+
 /* ─── Project Card ─── */
 function ProjectCard({ project, index, isInView }) {
   const [hovered, setHovered] = useState(false);
@@ -56,6 +57,7 @@ function ProjectCard({ project, index, isInView }) {
 
   return (
     <div
+      className="project-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -73,6 +75,7 @@ function ProjectCard({ project, index, isInView }) {
     >
       {/* ── Media side (AHORA 65% de ancho) ── */}
       <div
+        className="project-media"
         style={{
           order: imgRight ? 2 : 1,
           flexShrink: 0,
@@ -104,6 +107,7 @@ function ProjectCard({ project, index, isInView }) {
 
         {/* Side gradient fade toward info panel */}
         <div
+          className="project-gradient"
           style={{
             position: "absolute", inset: 0,
             background: imgRight
@@ -116,6 +120,7 @@ function ProjectCard({ project, index, isInView }) {
 
         {/* Icon badge */}
         <div
+          className="project-icon-badge"
           style={{
             position: "absolute",
             top: "16px",
@@ -136,6 +141,7 @@ function ProjectCard({ project, index, isInView }) {
 
         {/* Large watermark number */}
         <div
+          className="project-watermark"
           style={{
             position: "absolute",
             bottom: "10px",
@@ -158,6 +164,7 @@ function ProjectCard({ project, index, isInView }) {
 
       {/* ── Vertical divider ── */}
       <div
+        className="project-divider"
         style={{
           order: 2,
           flexShrink: 0,
@@ -169,6 +176,7 @@ function ProjectCard({ project, index, isInView }) {
 
       {/* ── Info side (AHORA 35% de ancho) ── */}
       <div
+        className="project-info"
         style={{
           order: imgRight ? 1 : 3,
           flex: 1, // Esto tomará el 35% restante
@@ -273,6 +281,7 @@ function ProjectCard({ project, index, isInView }) {
     </div>
   );
 }
+
 /* ─── Main Section ─── */
 export default function Projects() {
   const sectionRef = useRef(null);
@@ -350,7 +359,7 @@ export default function Projects() {
       <div style={{ position: "relative", zIndex: 10, maxWidth: "1200px", margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "72px", gap: "24px" }}>
+        <div className="projects-header-container" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "72px", gap: "24px" }}>
           <div>
             <p className="label-meta" style={{ color: "rgba(255,255,255,0.22)", marginBottom: "20px" }}>
               <span style={{ marginRight: "16px" }}>02 /</span>Selected Works
@@ -375,7 +384,47 @@ export default function Projects() {
         </div>
       </div>
 
-      <style>{`@keyframes proj-spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes proj-spin { to { transform: rotate(360deg); } }
+
+        /* --- Estilos Responsivos para Móviles --- */
+        @media (max-width: 860px) {
+          .project-card {
+            flex-direction: column !important;
+            height: auto !important;
+          }
+          .project-media {
+            width: 100% !important;
+            height: 260px !important;
+            order: 1 !important; /* Forza la imagen arriba */
+          }
+          .project-divider {
+            width: 100% !important;
+            height: 1px !important;
+            order: 2 !important;
+          }
+          .project-info {
+            order: 3 !important;
+            padding: 24px 20px !important;
+          }
+          .project-gradient {
+             background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.8) 100%) !important;
+          }
+          .project-icon-badge {
+            left: 16px !important;
+            right: auto !important;
+          }
+          .project-watermark {
+            left: auto !important;
+            right: 16px !important;
+            font-size: 60px !important;
+          }
+          .projects-header-container {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
